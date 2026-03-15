@@ -1,6 +1,6 @@
 ﻿; Include here the windows, processes and games that you want to exclude from the script
 windows := ["Program Manager", "Start", "Search", "System tray overflow window.", "Quick Settings", "Windows Default Lock Screen", "Tela de Bloqueio padrão do Windows"]
-processes := ["explorer.exe", "firefox.exe", "zen.exe", "devenv.exe", "jetbrains-toolbox.exe", "thunderbird.exe", "mstsc.exe", "League of Legends.exe"]
+processes := ["explorer.exe", "firefox.exe", "zen.exe", "devenv.exe", "jetbrains-toolbox.exe", "thunderbird.exe", "mstsc.exe", "League of Legends.exe", "seelen-ui.exe", "slu-service.exe", "Nexus.exe"]
 games := ["Warcraft III", "League of Legends", "Warhammer: Vermintide 2"]
 controls := ["Button2", "TrayShowDesktopButtonWClass1"] ; "TrayButton4", "ToolbarWindow323"
 hide := true
