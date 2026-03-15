@@ -1,5 +1,5 @@
 ﻿; Include here the windows, processes and games that you want to exclude from the script
-windows := ["Program Manager", "Start", "Search", "System tray overflow window.", "Quick Settings", "Windows Default Lock Screen", "Tela de Bloqueio padrão do Windows"]
+windows := ["Program Manager", "Start", "Start Menu", "Search", "System tray overflow window.", "Quick Settings", "Windows Default Lock Screen", "Tela de Bloqueio padrão do Windows"]
 processes := ["explorer.exe", "firefox.exe", "zen.exe", "devenv.exe", "jetbrains-toolbox.exe", "thunderbird.exe", "mstsc.exe", "League of Legends.exe", "seelen-ui.exe", "slu-service.exe", "Nexus.exe"]
 games := ["Warcraft III", "League of Legends", "Warhammer: Vermintide 2"]
 controls := ["Button2", "TrayShowDesktopButtonWClass1"] ; "TrayButton4", "ToolbarWindow323"
@@ -16,8 +16,10 @@ return
 ; ---------------------------------------- Hotkeys ----------------------------------------
 ^q::
     WinGetTitle, title, A
+    WinGet, active, ID, A
+    WinGet, process, ProcessName, ahk_id %active%
 
-    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start") {
+    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe") {
         WinClose, A
     }
 return
@@ -35,8 +37,10 @@ return
 
 #f::
     WinGetTitle, title, A
+    WinGet, active, ID, A
+    WinGet, process, ProcessName, ahk_id %active%
 
-    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start") {
+    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe") {
         WinMinimize, A
     }
 return
