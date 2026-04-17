@@ -19,7 +19,7 @@ return
     WinGet, active, ID, A
     WinGet, process, ProcessName, ahk_id %active%
 
-    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe") {
+    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe" && process != "Dock_64.exe") {
         WinClose, A
     }
 return
@@ -40,7 +40,7 @@ return
     WinGet, active, ID, A
     WinGet, process, ProcessName, ahk_id %active%
 
-    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe") {
+    if (title != "" && title != "Program Manager" && title != "Start Menu" && title != "Start" && process != "seelen-ui.exe" && process != "slu-service.exe" && process != "Nexus.exe" && process != "Dock_64.exe") {
         WinMinimize, A
     }
 return
@@ -97,7 +97,7 @@ IsWindowMaximized(id) {
 IsTitleBarVisible(id) {
     WinGet, Style, Style, ahk_id %id% 
 
-    return (Style & 0xC00000)
+    return (Style & 0x400000)
 }
 
 IsMouseOnPrimaryMonitor() {
@@ -212,31 +212,31 @@ SetTaskbarOnTop() {
 }
 
 ShowTitleBar(id) {
-    WinSet, Style, +0xC00000, ahk_id %id%
+    WinSet, Style, +0x400000, ahk_id %id%
 }
 
 HideTitleBar(id) {
     global modified
 
     SysGet, count, MonitorCount
-    WinSet, Style, -0xC00000, ahk_id %id%
+    WinSet, Style, -0x400000, ahk_id %id%
 
     modified.Push(id)
 
     ; This is a workaround for Windows 10 weird behavior when the title bar is hidden.
     ; Could also be caused when the monitors have different resolutions.
-    if (GetWindowsVersion() <= 10 && count > 1) {
-        monitor := GetWindowMonitor(id)
+    ; if (GetWindowsVersion() <= 10 && count > 1) {
+    ;     monitor := GetWindowMonitor(id)
 
-        ; I'm assuming that the monitor 1 is in the left side of the monitor 2 (Check Display Settings)
-        if (monitor = 2) {
-            Send, {LWin Down}{LShift Down}{Right}{LWin Up}{LShift Up}
-            Send, {LWin Down}{LShift Down}{Left}{LWin Up}{LShift Up}
-        } else {
-            Send, {LWin Down}{LShift Down}{Left}{LWin Up}{LShift Up}
-            Send, {LWin Down}{LShift Down}{Right}{LWin Up}{LShift Up}
-        }
-    }
+    ;     ; I'm assuming that the monitor 1 is in the left side of the monitor 2 (Check Display Settings)
+    ;     if (monitor = 2) {
+    ;         Send, {LWin Down}{LShift Down}{Right}{LWin Up}{LShift Up}
+    ;         Send, {LWin Down}{LShift Down}{Left}{LWin Up}{LShift Up}
+    ;     } else {
+    ;         Send, {LWin Down}{LShift Down}{Left}{LWin Up}{LShift Up}
+    ;         Send, {LWin Down}{LShift Down}{Right}{LWin Up}{LShift Up}
+    ;     }
+    ; }
 }
 
 HandleModified() {
